@@ -198,3 +198,9 @@ body {
   font-weight: 600;
   font-size: 18px;
 }
+
+.escodner {
+  background-color: white;
+  color: white;
+  border-color: white;
+}

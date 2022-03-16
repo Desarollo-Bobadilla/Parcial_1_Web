@@ -1,12 +1,9 @@
 // Tamaño de la pantalla
-let width = window.screen.availWidth
+let width = window.screen.availWidth;
 
 // Path de los datos
 const url = "https://gist.githubusercontent.com/josejbocanegra/9a28c356416badb8f9173daf36d1460b/raw/5ea84b9d43ff494fcbf5c5186544a18b42812f09/restaurant.json";
-
-// Ventana emergente
-let test = document.getElementById("emerg")
-test.style.display = "none"
+const test = document.getElementById("emerg");
 
 // Obtener y guardar los datos
 
@@ -25,33 +22,33 @@ get_Data( (value) => {
 
     // Dividir por tipo de producto
     
-    let Burgers = data[0]
-    let Tacos = data[1]
-    let Salads = data[2]
-    let Desserts = data[3]
-    let Drinks_and_Sides = data[4]
+    let Burgers = data[0];
+    let Tacos = data[1];
+    let Salads = data[2];
+    let Desserts = data[3];
+    let Drinks_and_Sides = data[4];
 
     // Incialmente esta cargado 'Burgers' en tarjetas
 
-    createDataVisual(Burgers)
+    createDataVisual(Burgers);
 
     // Cuando haga click en otro del menu cargo esos productos
 
-    let lis = document.getElementsByTagName("li")
+    let lis = document.getElementsByTagName("li");
     
     for(let i = 0; i < lis.length; i++){
 
         lis[i].onclick = function() {
 
-            let prod = lis[i].getElementsByTagName("a")
-            let name = prod[0].innerHTML
-            deleteInfo()
+            let prod = lis[i].getElementsByTagName("a");
+            let name = prod[0].innerHTML;
+            deleteInfo();
 
-            if (name === "Burgers") createDataVisual(Burgers)
-            else if (name === "Tacos") createDataVisual(Tacos)
-            else if (name === "Salads") createDataVisual(Salads)
-            else if (name === "Desserts") createDataVisual(Desserts)
-            else if (name === "Drinks &amp; Slides") createDataVisual(Drinks_and_Sides)
+            if (name === "Burgers") createDataVisual(Burgers);
+            else if (name === "Tacos") createDataVisual(Tacos);
+            else if (name === "Salads") createDataVisual(Salads);
+            else if (name === "Desserts") createDataVisual(Desserts);
+            else if (name === "Drinks &amp; Slides") createDataVisual(Drinks_and_Sides);
         }
 
     }
@@ -61,64 +58,64 @@ get_Data( (value) => {
 
 // Generar las cards con la información y guardar en el carrito la información
 
-let carrito = {}
+let carrito = {};
 
 function createDataVisual(dat){
 
-    let data = dat.products
-    let subt = document.getElementById("subti")
-    subt.innerHTML = dat.name
+    let data = dat.products;
+    let subt = document.getElementById("subti");
+    subt.innerHTML = dat.name;
 
     if (width <= 428){
-        let sec = document.getElementById("apodo")
-        sec.innerHTML = dat.name
+        let sec = document.getElementById("apodo");
+        sec.innerHTML = dat.name;
     }
 
-    let info = document.getElementById("info1")
+    let info = document.getElementById("info1");
 
-    let row = document.createElement("div")
-    row.className = "row"
+    let row = document.createElement("div");
+    row.className = "row";
 
-    info.appendChild(row)
+    info.appendChild(row);
 
     for(let i = 0; i < data.length; i++) {
 
         // Información del producto
-        let name = data[i].name
-        let description = data[i].description
-        let price = data[i].price
-        let image = data[i].image
+        let name = data[i].name;
+        let description = data[i].description;
+        let price = data[i].price;
+        let image = data[i].image;
 
         // CREAR ESTRUCTURA
-        let col = document.createElement("div")
-        col.className = "col-lg-3 col-12"
+        let col = document.createElement("div");
+        col.className = "col-lg-3 col-12";
 
-        let card = document.createElement("div")
-        card.className = "card"
+        let card = document.createElement("div");
+        card.className = "card";
 
 
-        let img = document.createElement("img")
-        img.className = "product card-img-top"
-        img.src = image
-        img.alt = name
+        let img = document.createElement("img");
+        img.className = "product card-img-top";
+        img.src = image;
+        img.alt = name;
 
-        let card_body = document.createElement("div")
-        card_body.className = "btnc card-body"
+        let card_body = document.createElement("div");
+        card_body.className = "btnc card-body";
 
-        let title = document.createElement("h5")
-        title.className = "tit card-title"
-        title.innerHTML = name
+        let title = document.createElement("h5");
+        title.className = "tit card-title";
+        title.innerHTML = name;
 
-        let text = document.createElement("p")
-        text.className = "inf card-text"
-        text.innerHTML = description
+        let text = document.createElement("p");
+        text.className = "inf card-text";
+        text.innerHTML = description;
         
-        let num = document.createElement("p")
-        num.className = "pri card-text"
-        num.innerHTML = "$" + price
+        let num = document.createElement("p");
+        num.className = "pri card-text";
+        num.innerHTML = "$" + price;
 
         let del = document.createElement("button");
-        del.className = "addC"
+        del.className = "addC";
         del.innerHTML = "Add to cart";
 
         del.onclick = function() {
@@ -132,93 +129,95 @@ function createDataVisual(dat){
                 carrito[data[i].name][0] += 1;
             }
 
-            let total = 0
+            let total = 0;
             for (const [key, value] of Object.entries(carrito)) {
                 total += value[0];
             }
 
-            let count = document.getElementById("count")
-            count.innerHTML = total + " items"
+            let count = document.getElementById("count");
+            count.innerHTML = total + " items";
 
-            let count_v2 = document.getElementById("count_v2")
-            count_v2.innerHTML = total + " items"
+            let count_v2 = document.getElementById("count_v2");
+            count_v2.innerHTML = total + " items";
         }
 
         // Añadir productos 
 
-        row.appendChild(col)
-        col.appendChild(card)
-        card.appendChild(card_body)
-        card_body.appendChild(img)
-        card_body.appendChild(title)
-        card_body.appendChild(text)
-        card_body.appendChild(num)
-        card_body.appendChild(del)
+        row.appendChild(col);
+        col.appendChild(card);
+        card.appendChild(card_body);
+        card_body.appendChild(img);
+        card_body.appendChild(title);
+        card_body.appendChild(text);
+        card_body.appendChild(num);
+        card_body.appendChild(del);
 
     }
 }
 
 function deleteInfo(){
 
-    let info0 = document.getElementById("info0")
-    info0.remove()
-    let info1 = document.getElementById("info1")
-    info1.remove()
-    let info2 = document.getElementById("info2")
-    info2.remove()
+    let info0 = document.getElementById("info0");
+    info0.remove();
+    let info1 = document.getElementById("info1");
+    info1.remove();
+    let info2 = document.getElementById("info2");
+    info2.remove();
 
-    let body = document.getElementById("data")
+    let body = document.getElementById("data");
 
-    let div1 = document.createElement("div")
-    div1.id = "info0"
-    div1.className = "col-lg-1 col-2"
+    let div1 = document.createElement("div");
+    div1.id = "info0";
+    div1.className = "col-lg-1 col-2";
 
-    let div2 = document.createElement("div")
-    div2.id = "info1"
-    div2.className = "col-lg-10 col-8"
+    let div2 = document.createElement("div");
+    div2.id = "info1";
+    div2.className = "col-lg-10 col-8";
 
-    let div3 = document.createElement("div")
-    div3.id = "info2"
-    div3.className = "col-lg-1 col-2"
+    let div3 = document.createElement("div");
+    div3.id = "info2";
+    div3.className = "col-lg-1 col-2";
 
-    body.appendChild(div1)
-    body.appendChild(div2)
-    body.appendChild(div3)
+    body.appendChild(div1);
+    body.appendChild(div2);
+    body.appendChild(div3);
 }
 
 
 // Cuando hago click en el carrito
 
-let car = document.getElementById("car")
+let car = document.getElementById("car");
 
 car.onclick = function() {
 
-    let subt = document.getElementById("subti")
-    subt.innerHTML = "ORDER DETAIL"
+    let subt = document.getElementById("subti");
+    subt.innerHTML = "ORDER DETAIL";
 
-    deleteInfo()
-    createTable()
+    deleteInfo();
+    createTable();
 }
 
-let car_v2 = document.getElementById("car_v2")
+let car_v2 = document.getElementById("car_v2");
 
 car_v2.onclick = function() {
 
-    let subt = document.getElementById("subti")
-    subt.innerHTML = "ORDER DETAIL"
+    let subt = document.getElementById("subti");
+    subt.innerHTML = "ORDER DETAIL";
 
-    deleteInfo()
-    createTable()
+    deleteInfo();
+    createTable();
 }
+
+let time = 0;
 
 function createTable() {
 
     if (width <= 428){
-        let sec = document.getElementById("apodo")
-        sec.innerHTML = "Order Detail"
+        let sec = document.getElementById("apodo");
+        sec.innerHTML = "Order Detail";
     }
 
-    let info = document.getElementById("info1")
+    let info = document.getElementById("info1");
     let table = document.createElement("table");
 
     if (width > 428){
@@ -228,7 +227,7 @@ function createTable() {
         table.className = "table";
     }
     
-    table.id = "myTable"
+    table.id = "myTable";
 
     let thead = document.createElement("thead");
     let tbody = document.createElement("tbody");
@@ -270,91 +269,97 @@ function createTable() {
         let row = document.createElement("tr");
 
         if (width <= 428){
-            row.className = "oscura"
+            row.className = "oscura";
         }
 
         if (num % 2 == 1){
-            row.className = "oscura"
-            row.id = key
+            row.className = "oscura";
+            row.id = key;
         }
         else{
-            row.id = key
+            row.id = key;
         }
 
         let tem = document.createElement("td");
-        tem.innerHTML = num
-        num += 1
+        tem.innerHTML = num;
+        num += 1;
 
         let qqty = document.createElement("td");
-        qqty.innerHTML = value[0]
+        qqty.innerHTML = value[0];
 
         let iption = document.createElement("td");
-        iption.innerHTML = key
+        iption.innerHTML = key;
 
         let unit = document.createElement("td");
-        unit.innerHTML = value[1]
+        unit.innerHTML = value[1];
 
         let amo = document.createElement("td");
-        amo.innerHTML = value[0]*value[1]
+        amo.innerHTML = value[0]*value[1];
 
         let add = document.createElement("button");
         add.innerHTML = "+";
-        add.className = "am"
+        add.className = "am";
 
         add.onclick = function() {
 
-            let update = document.getElementById(key)
-            let cols = update.getElementsByTagName("td")
+            let update = document.getElementById(key);
+            let cols = update.getElementsByTagName("td");
             
             if (width <= 428){
-                carrito[cols[1].innerHTML][0] += 1
-                cols[0].innerHTML = carrito[cols[1].innerHTML][0] 
-                let cash = document.getElementById("cash")
-                cash.innerHTML = "Total: $" + totalCash ()
+
+                carrito[cols[1].innerHTML][0] += 1;
+                cols[0].innerHTML = carrito[cols[1].innerHTML][0];
+                let cash = document.getElementById("cash");
+                cash.innerHTML = "Total: $" + totalCash ();
+
             }
             else{
-                let qq = parseInt(cols[1].innerHTML)
-                let pp = cols[3].innerHTML
+
+                let qq = parseInt(cols[1].innerHTML);
+                let pp = cols[3].innerHTML;
     
-                qq += 1
-                cols[1].innerHTML = qq
-                cols[4].innerHTML = qq*pp
+                qq += 1;
+                cols[1].innerHTML = qq;
+                cols[4].innerHTML = qq*pp;
     
-                let cash = document.getElementById("cash")
-                cash.innerHTML = "Total: $" + totalCash ()
+                let cash = document.getElementById("cash");
+                cash.innerHTML = "Total: $" + totalCash ();
             }
         }
 
         let minus = document.createElement("button");
         minus.innerHTML = "-";
-        minus.className = "am"
+        minus.className = "am";
 
         minus.onclick = function() {
-            let update = document.getElementById(key)
-            let cols = update.getElementsByTagName("td")
+            let update = document.getElementById(key);
+            let cols = update.getElementsByTagName("td");
 
             if (width <= 428){
-                carrito[cols[1].innerHTML][0] -= 1
-                cols[0].innerHTML = carrito[cols[1].innerHTML][0]
-                let cash = document.getElementById("cash")
-                cash.innerHTML = "Total: $" + totalCash ()
+
+                carrito[cols[1].innerHTML][0] -= 1;
+                cols[0].innerHTML = carrito[cols[1].innerHTML][0];
+                let cash = document.getElementById("cash");
+                cash.innerHTML = "Total: $" + totalCash ();
+
             }
             else{
-                let qq = parseInt(cols[1].innerHTML)
-                let pp = cols[3].innerHTML
+
+                let qq = parseInt(cols[1].innerHTML);
+                let pp = cols[3].innerHTML;
     
-                qq -= 1
-                cols[1].innerHTML = qq
-                cols[4].innerHTML = qq*pp
+                qq -= 1;
+                cols[1].innerHTML = qq;
+                cols[4].innerHTML = qq*pp;
     
-                let cash = document.getElementById("cash")
-                cash.innerHTML = "Total: $" + totalCash ()
+                let cash = document.getElementById("cash");
+                cash.innerHTML = "Total: $" + totalCash ();
             }
         }
 
         let btns = document.createElement("td");
-        btns.appendChild(add)
-        btns.appendChild(minus)
+        btns.appendChild(add);
+        btns.appendChild(minus);
         
         if (width > 428) row.appendChild(tem);
         row.appendChild(qqty);
@@ -367,50 +372,50 @@ function createTable() {
     }
 
     // FINAL POR TAMAÑO
-    let final_row = document.createElement("div")
-    let final_final_row = document.createElement("div")
-    let div1 = document.createElement("div")
-    let div2 = document.createElement("div")
-    let div3 = document.createElement("div")
-    let div4 = document.createElement("div")
+    let final_row = document.createElement("div");
+    let final_final_row = document.createElement("div");
+    let div1 = document.createElement("div");
+    let div2 = document.createElement("div");
+    let div3 = document.createElement("div");
+    let div4 = document.createElement("div");
 
     if(width > 428){
 
-        final_row.className = "final_row row"
+        final_row.className = "final_row row";
     
-        div1.className = "total col-2"
-        div1.id = "cash"
+        div1.className = "total col-2";
+        div1.id = "cash";
     
-        div2.className = "col-7"
+        div2.className = "col-7";
 
-        div3.className = "col-1"
-        div4.className = "col-2"
+        div3.className = "col-1";
+        div4.className = "col-2";
     
-        info.appendChild(final_row)
+        info.appendChild(final_row);
     
-        final_row.appendChild(div1)
-        final_row.appendChild(div2)
-        final_row.appendChild(div3)
-        final_row.appendChild(div4)
+        final_row.appendChild(div1);
+        final_row.appendChild(div2);
+        final_row.appendChild(div3);
+        final_row.appendChild(div4);
     }
     else{
         
-        final_row.className = "final_row row"
-        final_final_row.className = "row"
+        final_row.className = "final_row row";
+        final_final_row.className = "row";
     
-        div1.className = "total col-12"
-        div1.id = "cash"
+        div1.className = "total col-12";
+        div1.id = "cash";
 
-        div3.className = "col-4"
-        div4.className = "col-2"
+        div3.className = "col-4";
+        div4.className = "col-2";
     
-        info.appendChild(final_row)
-        final_row.appendChild(div1)
+        info.appendChild(final_row);
+        final_row.appendChild(div1);
 
-        info.appendChild(final_final_row)
-        final_final_row.appendChild(div2)
-        final_final_row.appendChild(div3)
-        final_final_row.appendChild(div4)
+        info.appendChild(final_final_row);
+        final_final_row.appendChild(div2);
+        final_final_row.appendChild(div3);
+        final_final_row.appendChild(div4);
     }
 
     // ADD TOTAL AND BUTTONS
@@ -420,122 +425,146 @@ function createTable() {
     yes.className = "yes";
 
     yes.onclick = function() {
-        confir()
+        confir();
     }
 
-    let no = document.getElementById("emerg");
-    no.style.display = "block"
-    no.innerHTML = "Cancel";
-    no.className = "no"
+    let bt = document.getElementById("emerg");
+    let no_ = document.createElement("button");
+    let no = bt;
 
-    let rr = document.getElementById("nada")
+    if (time === 0){
+        no.innerHTML = "Cancel";
+        no.className = "no";
+        
+    }
+    else{
+        no_.innerHTML = "Cancel";
+        no_.className = "no";
+        no_.dataset.toggle = "modal";
+        no_.dataset.target = "#exampleModal";
+    }
+
+    
+
+    let rr = document.getElementById("nada");
     rr.onclick = function() {
-        let table = document.getElementById("myTable")
-        resetInfoTable(table)
+        let table = document.getElementById("myTable");
+        resetInfoTable(table);
     }
 
-    div1.innerHTML = "Total: $" + totalCash ()
-    div3.appendChild(no)
-    div4.appendChild(yes)
+    div1.innerHTML = "Total: $" + totalCash ();
+    if(time == 0) {
+        div3.appendChild(no);
+        time += 1;
+    }
+    else{
+        div3.appendChild(no_);
+        time += 1;
+    }
+    div4.appendChild(yes);
 
 }
 
 function totalCash () {
 
-    total = 0
+    total = 0;
 
     if (width <= 428){
+
         for (const [key, value] of Object.entries(carrito)) {
-            total += value[0]*value[1]   
+            total += value[0]*value[1];
         }
     }
     else{
-        let rows = document.getElementsByTagName("tr")
+
+        let rows = document.getElementsByTagName("tr");
 
         for (let i = 1; i < rows.length; i++ ){
-            let cols = parseFloat(rows[i].getElementsByTagName("td")[4].innerHTML)
-            total += cols
+            let cols = parseFloat(rows[i].getElementsByTagName("td")[4].innerHTML);
+            total += cols;
         }
     }
 
-    return total
+    return total;
 
 }
 
 function confir() {
 
-    let info = []
+    let info = [];
 
     if(width <= 428){
 
-        let c = 0
+        let c = 0;
 
         for (const [key, value] of Object.entries(carrito)) {
             let data = {"item": c, "quantity": value[0], 
-                        "description": key, "unitPrice": value[1]}
-            info.push(data)
-            c += 1  
+                        "description": key, "unitPrice": value[1]};
+            info.push(data);
+            c += 1;
         }
 
     }
     else{
-        let rows = document.getElementsByTagName("tr")
+        let rows = document.getElementsByTagName("tr");
     
         for (let i = 1; i < rows.length; i++ ){
     
-            let cols = rows[i].getElementsByTagName("td")
+            let cols = rows[i].getElementsByTagName("td");
             let data = {"item": cols[0].innerHTML, "quantity": cols[1].innerHTML, 
-                        "description": cols[2].innerHTML, "unitPrice": cols[3].innerHTML}
-            info.push(data)  
+                        "description": cols[2].innerHTML, "unitPrice": cols[3].innerHTML};
+            info.push(data);
         }
     }
 
-    console.log(info)
+    console.log(info);
 }
 
 function resetInfoTable(btn){
 
-    btn.remove()
-    carrito = {}
+    btn.remove();
+    carrito = {};
 
-    let cash = document.getElementById("cash")
-    cash.innerHTML = "Total: $0"
+    let cash = document.getElementById("cash");
+    cash.innerHTML = "Total: $0";
 
-    let count = document.getElementById("count")
-    count.innerHTML = 0 + " items"
+    let count = document.getElementById("count");
+    count.innerHTML = 0 + " items";
 
-    let count_v2 = document.getElementById("count_v2")
-    count_v2.innerHTML = 0 + " items"
+    let count_v2 = document.getElementById("count_v2");
+    count_v2.innerHTML = 0 + " items";
 
 }
 
 // Change Menu
 
-let body = document.body
+let body = document.body;
 
 changeDims = function() {
 
     if (width <= 428){
-        let newMenu = document.getElementById("nnvar")
+
+        let newMenu = document.getElementById("nnvar");
         newMenu.style.backgroundColor = "#FDCD55";
     
-        let apodo = document.getElementById("apodo")
-        apodo.style.color = "black"
+        let apodo = document.getElementById("apodo");
+        apodo.style.color = "black";
     
         var size = [window.width,window.height];
         window.resizeTo(size[0],size[1]);
     }
     else{
-        let newMenu = document.getElementById("nnvar")
+
+        let newMenu = document.getElementById("nnvar");
         newMenu.style.backgroundColor = "#333a40;";
     
-        let apodo = document.getElementById("apodo")
-        apodo.style.color = "#333a40;"
+        let apodo = document.getElementById("apodo");
+        apodo.style.color = "#333a40";
     
         var size = [window.width,window.height];
         window.resizeTo(size[0],size[1]);
     }
 }
 
-changeDims()
+changeDims();
 

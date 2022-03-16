@@ -47,11 +47,7 @@
       </div>
     </div>
 
-    <!--
-    <div class="row row d-md-block d-none d-lg-block"">
-      
-    </div>
-    -->
+    <div id="confirmar"></div>
 
     <hr />
 
@@ -115,9 +111,11 @@
     <div class="d-md-block d-none d-sm-block">
       <div class="subtitulo row">
         <h2 class="subti" id="subti">BURGERS</h2>
-        <div class="col-1"></div>
-        <div class="col-10"><hr /></div>
-        <dir class="col-1"></dir>
+        <ul class="col-1"></ul>
+        <div class="col-10">
+          <hr />
+        </div>
+        <ul class="col-1"></ul>
       </div>
     </div>
 
@@ -125,9 +123,66 @@
 
     <!-- INFORMACION -->
     <div class="row" id="data">
-      <div class="col-lg-1 col-2" id="info0"></div>
-      <div class="col-lg-10 col-8" id="info1"></div>
-      <dir class="col-lg-1 col-2" id="info2"></dir>
+      <ul class="col-lg-1 col-2" id="info0"></ul>
+      <ul class="col-lg-10 col-7" id="info1"></ul>
+      <ul class="col-lg-1 col-3" id="info2"></ul>
+    </div>
+
+    <!-- Button trigger modal -->
+    <button
+      type="button"
+      class="no"
+      id="emerg"
+      data-bs-toggle="modal"
+      data-bs-target="#exampleModal"
+    ></button>
+
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Cancel The Order</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            Are you sure about cancelling the order ?
+          </div>
+          <div class="modal-footer">
+            <div class="row">
+              <button
+                type="button"
+                class="yes_v2"
+                data-bs-dismiss="modal"
+                id="nada"
+              >
+                Yes, I want to cancel the order
+              </button>
+            </div>
+            <div class="row">
+              <button
+                type="button"
+                class="no_v2"
+                id="borrar"
+                data-bs-dismiss="modal"
+              >
+                No, I want to continue adding products
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!--FOOTER-->

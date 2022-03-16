@@ -4,6 +4,10 @@ let width = window.screen.availWidth
 // Path de los datos
 const url = "https://gist.githubusercontent.com/josejbocanegra/9a28c356416badb8f9173daf36d1460b/raw/5ea84b9d43ff494fcbf5c5186544a18b42812f09/restaurant.json";
 
+// Ventana emergente
+let test = document.getElementById("emerg")
+test.style.display = "none"
+
 // Obtener y guardar los datos
 
 let data = [];
@@ -209,8 +213,12 @@ car_v2.onclick = function() {
 
 function createTable() {
 
+    if (width <= 428){
+        let sec = document.getElementById("apodo")
+        sec.innerHTML = "Order Detail"
+    }
+
     let info = document.getElementById("info1")
-    
     let table = document.createElement("table");
 
     if (width > 428){
@@ -300,6 +308,7 @@ function createTable() {
             
             if (width <= 428){
                 carrito[cols[1].innerHTML][0] += 1
+                cols[0].innerHTML = carrito[cols[1].innerHTML][0] 
                 let cash = document.getElementById("cash")
                 cash.innerHTML = "Total: $" + totalCash ()
             }
@@ -326,6 +335,7 @@ function createTable() {
 
             if (width <= 428){
                 carrito[cols[1].innerHTML][0] -= 1
+                cols[0].innerHTML = carrito[cols[1].innerHTML][0]
                 let cash = document.getElementById("cash")
                 cash.innerHTML = "Total: $" + totalCash ()
             }
@@ -362,6 +372,7 @@ function createTable() {
     let div1 = document.createElement("div")
     let div2 = document.createElement("div")
     let div3 = document.createElement("div")
+    let div4 = document.createElement("div")
 
     if(width > 428){
 
@@ -372,13 +383,15 @@ function createTable() {
     
         div2.className = "col-7"
 
-        div3.className = "col-3"
+        div3.className = "col-1"
+        div4.className = "col-2"
     
         info.appendChild(final_row)
     
         final_row.appendChild(div1)
         final_row.appendChild(div2)
         final_row.appendChild(div3)
+        final_row.appendChild(div4)
     }
     else{
         
@@ -387,6 +400,9 @@ function createTable() {
     
         div1.className = "total col-12"
         div1.id = "cash"
+
+        div3.className = "col-4"
+        div4.className = "col-2"
     
         info.appendChild(final_row)
         final_row.appendChild(div1)
@@ -394,33 +410,33 @@ function createTable() {
         info.appendChild(final_final_row)
         final_final_row.appendChild(div2)
         final_final_row.appendChild(div3)
+        final_final_row.appendChild(div4)
     }
 
     // ADD TOTAL AND BUTTONS
 
     let yes = document.createElement("button");
     yes.innerHTML = "Confirm Order";
-    yes.className = "yes"
+    yes.className = "yes";
 
     yes.onclick = function() {
         confir()
     }
 
-    let no = document.createElement("button");
+    let no = document.getElementById("emerg");
+    no.style.display = "block"
     no.innerHTML = "Cancel";
     no.className = "no"
 
-    no.onclick = function() {
-        //swal("Oops!", "Something went wrong on the page!", "error");
-        if (confirm("Cancel the order \nAre you sure about cancelling the order ?") == true) {
-            let table = document.getElementById("myTable")
-            resetInfoTable(table)
-        }
+    let rr = document.getElementById("nada")
+    rr.onclick = function() {
+        let table = document.getElementById("myTable")
+        resetInfoTable(table)
     }
 
     div1.innerHTML = "Total: $" + totalCash ()
     div3.appendChild(no)
-    div3.appendChild(yes)
+    div4.appendChild(yes)
 
 }
 
@@ -493,8 +509,6 @@ function resetInfoTable(btn){
 
 }
 
-
-
 // Change Menu
 
 let body = document.body
@@ -524,3 +538,4 @@ changeDims = function() {
 }
 
 changeDims()
+

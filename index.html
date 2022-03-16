@@ -11,70 +11,133 @@
       crossorigin="anonymous"
     />
 
+    <link rel="stylesheet" href="main.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&family=Rochester&display=swap"
+      rel="stylesheet"
+    />
+
     <title>SBob ~ P1</title>
   </head>
   <body id="body">
-    <div class="row">
-      <!-- TITLE-->
-      <div class="col-10">
-        <h1>Restaurant E Lounge</h1>
+    <div class="d-md-block d-none d-sm-block">
+      <div class="row">
+        <!-- TITLE-->
+        <div class="col-lg-9">
+          <h1 class="titulo">Restaurant E Lounge</h1>
+        </div>
+        <div class="col-lg-1">
+          <img class="car img-fluid" id="car" src="static/car.png" alt="car" />
+        </div>
+
+        <div class="count col-lg-1" id="count"></div>
       </div>
-      <div class="col-1">
-        <i class="bi bi-cart-check">
+    </div>
+
+    <div class="d-block d-sm-none">
+      <div class="row">
+        <div class="col-8"></div>
+        <div class="col-1">
+          <img class="car_v2" id="car_v2" src="static/car.png" alt="car" />
+        </div>
+        <div class="count_v2 col-2" id="count_v2"></div>
+        <h1 class="titulo_v2">Restaurant E Lounge</h1>
+      </div>
+    </div>
+
+    <!--
+    <div class="row row d-md-block d-none d-lg-block"">
+      
+    </div>
+    -->
+
+    <hr />
+
+    <!--IMAGE-->
+    <div class="mover d-md-block d-none d-sm-block">
+      <img class="img-fluid" src="static/burger.png" alt="main" />
+    </div>
+
+    <!-- MENU -->
+    <nav class="nnvar navbar navbar-expand-lg" id="nnvar">
+      <div class="container-fluid">
+        <p class="apodo" id="apodo">Burgers</p>
+        <button
+          class="navbar-toggler conta"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="16"
             height="16"
             fill="currentColor"
-            class="bi bi-cart-check"
+            class="bi bi-arrow-down"
             viewBox="0 0 16 16"
           >
             <path
-              d="M11.354 6.354a.5.5 0 0 0-.708-.708L8 8.293 6.854 7.146a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z"
-            />
-            <path
-              d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zm3.915 10L3.102 4h10.796l-1.313 7h-8.17zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"
+              fill-rule="evenodd"
+              d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z"
             />
           </svg>
-        </i>
-      </div>
-
-      <div class="col-1" id="count"></div>
-    </div>
-    <hr />
-
-    <!-- MENU -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light" id="menu">
-      <div class="container-fluid">
+          <i class="bi bi-arrow-down"></i>
+        </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link" href="#">Burgers</a>
+              <a class="nav-link">Burgers</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Tacos</a>
+              <a class="nav-link">Tacos</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Salads</a>
+              <a class="nav-link">Salads</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Desserts</a>
+              <a class="nav-link">Desserts</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Drinks & Slides</a>
+              <a class="nav-link">Drinks & Slides</a>
             </li>
           </ul>
         </div>
       </div>
     </nav>
-    <hr />
 
-    <!--Information-->
+    <!-- SUB TITULO -->
+
+    <div class="d-md-block d-none d-sm-block">
+      <div class="subtitulo row">
+        <h2 class="subti" id="subti">BURGERS</h2>
+        <div class="col-1"></div>
+        <div class="col-10"><hr /></div>
+        <dir class="col-1"></dir>
+      </div>
+    </div>
+
+    <br />
+
+    <!-- INFORMACION -->
     <div class="row" id="data">
-      <div id="info"></div>
+      <div class="col-lg-1 col-2" id="info0"></div>
+      <div class="col-lg-10 col-8" id="info1"></div>
+      <dir class="col-lg-1 col-2" id="info2"></dir>
+    </div>
+
+    <!--FOOTER-->
+
+    <div class="foot row">
+      <p>Contact us: +573102171020 - info@restaurant.com - @restaurant</p>
     </div>
 
     <script src="main.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
